@@ -33,7 +33,7 @@ jobs:
           EXT=""
           if [ "${{ matrix.os }}" = "windows" ]; then EXT=".exe"; fi
           mkdir -p dist
-          go build -ldflags="-s -w" -o dist/file-server-${{ matrix.os }}-${{ matrix.arch }}${EXT} main.go
+          CGO_ENABLED=0 go build -ldflags="-s -w" -o dist/file-server-${{ matrix.os }}-${{ matrix.arch }}${EXT} main.go
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
